@@ -1,71 +1,444 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tiempo Libre San Bernardo</title>
+  <meta charset="UTF-8">
+  <title>Tiempo Libre San Bernardo - Contacto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+  <!-- META BÁSICOS -->
+  <meta name="description" content="Contacto y redes de Tiempo Libre San Bernardo. Consultas, reservas y ubicación.">
+  <meta name="theme-color" content="#0f172a">
+
+  <style>
+    /* ==============================
+       RESET SIMPLE
+    =============================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f9fafb;
+    }
+
+    /* ==============================
+       FONDO + ESCENA
+    =============================== */
     body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: linear-gradient(to bottom, #00aaff, #ffffff 60%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        text-align: center;
+      /* Degradé duotono estilo mar + cielo */
+      background: radial-gradient(circle at 0% 0%, #0ea5e9 0, #0f172a 45%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: hidden;
     }
 
-    .container {
-        background: #ffffffcc;
-        padding: 20px;
-        border-radius: 15px;
-        width: 90%;
-        max-width: 380px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    /* "Sol" */
+    .sun {
+      position: fixed;
+      top: -80px;
+      right: -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, #fbbf24 0, #f97316 40%, transparent 70%);
+      opacity: 0.75;
+      filter: blur(0.5px);
+      pointer-events: none;
+      animation: pulse-sun 7s ease-in-out infinite;
+      z-index: 0;
     }
 
-    h1 {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
-        color: #0077aa;
+    /* Olas de fondo */
+    .wave {
+      position: fixed;
+      left: -20%;
+      right: -20%;
+      bottom: -40px;
+      height: 220px;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.6) 0, transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(45, 212, 191, 0.4) 0, transparent 55%),
+        linear-gradient(to top, rgba(15, 118, 110, 0.9), transparent 65%);
+      opacity: 0.8;
+      filter: blur(1px);
+      pointer-events: none;
+      animation: wave-move 14s linear infinite;
+      z-index: 0;
     }
 
-    button {
-        width: 100%;
-        padding: 14px;
-        margin: 10px 0;
-        border: none;
-        border-radius: 12px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        font-weight: bold;
+    /* ==============================
+       CONTENEDOR PRINCIPAL
+    =============================== */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      animation: fade-in 0.8s ease-out;
     }
 
-    .instagram { background-color: #d62976; color: white; }
-    .facebook { background-color: #1877F2; color: white; }
-    .whatsapp { background-color: #25D366; color: white; }
-</style>
+    .card {
+      background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.90),
+          rgba(15, 23, 42, 0.80),
+          rgba(15, 23, 42, 0.92)
+        );
+      border-radius: 24px;
+      padding: 22px 18px 20px;
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
 
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .logo-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: conic-gradient(from 210deg, #22c55e, #0ea5e9, #22c55e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b1120;
+      font-size: 26px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(22, 163, 74, 0.7);
+      transform-origin: center;
+      animation: float 4.8s ease-in-out infinite;
+    }
+
+    .title-block h1 {
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      margin-bottom: 3px;
+    }
+
+    .title-block h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #f9fafb;
+      margin-bottom: 3px;
+    }
+
+    .title-block p {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 18px;
+    }
+
+    .chip {
+      font-size: 0.72rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #cbd5f5;
+      background: radial-gradient(circle at 10% 0%, rgba(56, 189, 248, 0.16), transparent 60%);
+    }
+
+    .location {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+
+    /* ==============================
+       BOTONES
+    =============================== */
+    .btn-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      color: #f9fafb;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition:
+        transform 0.08s ease-out,
+        box-shadow 0.12s ease-out,
+        filter 0.15s ease-out,
+        background 0.15s ease-out;
+    }
+
+    .btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.6);
+      filter: brightness(0.97);
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.25), transparent 60%);
+      opacity: 0;
+      transform: translate3d(-30%, -30%, 0);
+      transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+      pointer-events: none;
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+      transform: translate3d(-10%, -10%, 0);
+    }
+
+    .btn-main {
+      font-size: 1.05rem;
+      padding-block: 14px;
+    }
+
+    .btn-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.17);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .btn-label-main {
+      display: block;
+      line-height: 1.1;
+    }
+
+    .btn-label-sub {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .btn-arrow {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* Colores de botones (duotono / degradés) */
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      box-shadow: 0 14px 28px rgba(22, 163, 74, 0.7);
+    }
+
+    .btn-instagram {
+      background: radial-gradient(circle at 0 0, #f97316, transparent 55%),
+                  linear-gradient(135deg, #db2777, #7c3aed);
+      box-shadow: 0 14px 28px rgba(192, 38, 211, 0.6);
+    }
+
+    .btn-facebook {
+      background: linear-gradient(135deg, #1d4ed8, #0f172a);
+      box-shadow: 0 14px 26px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-maps {
+      background: linear-gradient(135deg, #22c55e, #0ea5e9);
+      box-shadow: 0 14px 26px rgba(34, 197, 94, 0.6);
+    }
+
+    /* ==============================
+       FOOTER
+    =============================== */
+    .footer-note {
+      font-size: 0.72rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .footer-note span {
+      color: #e5e7eb;
+    }
+
+    /* ==============================
+       ANIMACIONES
+    =============================== */
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+      50% {
+        transform: translateY(-6px) rotate(4deg);
+      }
+    }
+
+    @keyframes pulse-sun {
+      0%, 100% { transform: scale(1); opacity: 0.75; }
+      50%      { transform: scale(1.12); opacity: 0.95; }
+    }
+
+    @keyframes wave-move {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(18%); }
+    }
+
+    /* ==============================
+       RESPONSIVE
+    =============================== */
+    @media (max-width: 480px) {
+      .card {
+        padding: 18px 14px 16px;
+        border-radius: 20px;
+      }
+      .title-block h2 {
+        font-size: 1.35rem;
+      }
+      .btn {
+        border-radius: 14px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="container">
 
-    <h1>Tiempo Libre San Bernardo 🌴</h1>
+  <!-- Sol / efecto ambiental -->
+  <div class="sun"></div>
+  <div class="wave"></div>
 
-    <button class="instagram" onclick="window.location.href='https://www.instagram.com/tiempo.libreok/'">
-        Instagram
-    </button>
+  <main class="wrapper">
+    <section class="card">
 
-    <button class="facebook" onclick="window.location.href='https://www.facebook.com'">
-        Facebook
-    </button>
+      <header class="header">
+        <div class="logo-badge">
+          🌴
+        </div>
+        <div class="title-block">
+          <h1>Tiempo Libre</h1>
+          <h2>San Bernardo</h2>
+          <p>Consultas, reservas y ubicación desde tu celular.</p>
+        </div>
+      </header>
 
-    <button class="whatsapp" onclick="window.location.href='https://wa.me/541121610770?text=Hola%21+Estoy+frente+al+local+de+Tiempo+Libre+San+Bernardo+y+quisiera+consultar+disponibilidad.%F0%9F%8C%B4'">
-        WhatsApp 📞
-    </button>
+      <div class="chip-row">
+        <div class="chip">Alquileres turísticos</div>
+        <div class="chip">Costa Atlántica</div>
+        <div class="chip">Atención online</div>
+      </div>
 
-</div>
+      <p class="location">📍 San Juan 2355 — San Bernardo, Buenos Aires, Argentina</p>
+
+      <!-- BOTONES PRINCIPALES -->
+      <div class="btn-grid">
+
+        <!-- WHATSAPP (mensaje codificado OK) -->
+        <button
+          class="btn btn-main btn-whatsapp"
+          onclick="window.location.href='https://wa.me/541121610770?text=Hola%21+Estoy+frente+al+local+de+Tiempo+Libre+San+Bernardo+y+quisiera+consultar+disponibilidad.%F0%9F%8C%B4'">
+          <div class="btn-left">
+            <div class="btn-icon">💬</div>
+            <div>
+              <span class="btn-label-main">WhatsApp directo</span>
+              <span class="btn-label-sub">Atendemos solo por WhatsApp</span>
+            </div>
+          </div>
+          <span class="btn-arrow">➜</span>
+        </button>
+
+        <!-- INSTAGRAM -->
+        <button
+          class="btn btn-instagram"
+          onclick="window.location.href='https://www.instagram.com/tiempo.libreok/'">
+          <div class="btn-left">
+            <div class="btn-icon">📸</div>
+            <div>
+              <span class="btn-label-main">Instagram</span>
+              <span class="btn-label-sub">@tiempo.libreok</span>
+            </div>
+          </div>
+          <span class="btn-arrow">➜</span>
+        </button>
+
+        <!-- FACEBOOK (podés cambiar el link si tenés página específica) -->
+        <button
+          class="btn btn-facebook"
+          onclick="window.location.href='https://www.facebook.com/'">
+          <div class="btn-left">
+            <div class="btn-icon">📘</div>
+            <div>
+              <span class="btn-label-main">Facebook</span>
+              <span class="btn-label-sub">Seguir novedades</span>
+            </div>
+          </div>
+          <span class="btn-arrow">➜</span>
+        </button>
+
+        <!-- GOOGLE MAPS UBICACIÓN (podés ajustar si tenés link exacto) -->
+        <button
+          class="btn btn-maps"
+          onclick="window.location.href='https://www.google.com/maps/search/?api=1&query=San+Juan+2355,+San+Bernardo,+Buenos+Aires,+Argentina'">
+          <div class="btn-left">
+            <div class="btn-icon">📍</div>
+            <div>
+              <span class="btn-label-main">Cómo llegar</span>
+              <span class="btn-label-sub">Ver en Google Maps</span>
+            </div>
+          </div>
+          <span class="btn-arrow">➜</span>
+        </button>
+
+      </div>
+
+      <p class="footer-note">
+        <span>Tip:</span> guardá esta página en tus favoritos para futuras consultas.
+      </p>
+
+    </section>
+  </main>
+
 </body>
 </html>
